@@ -608,6 +608,7 @@ GameObject:
   - component: {fileID: 103395529}
   - component: {fileID: 103395532}
   - component: {fileID: 103395533}
+  - component: {fileID: 103395534}
   m_Layer: 0
   m_Name: Cylinder (1)
   m_TagString: Untagged
@@ -674,7 +675,7 @@ Transform:
   m_GameObject: {fileID: 103395527}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 3.24, z: 16}
+  m_LocalPosition: {x: -1, y: 3.24, z: 15.64}
   m_LocalScale: {x: 5, y: -0.053735234, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -695,8 +696,8 @@ MonoBehaviour:
   requiredPlayers: 3
   playerCountText: {fileID: 2020388032}
   winText: {fileID: 1758987879}
-  zoneCenter: {x: -1, y: 2.5, z: 12}
-  zoneRadius: 5
+  zoneCenter: {x: -1, y: 3.3, z: 16}
+  zoneRadius: 3
 --- !u!65 &103395533
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -712,12 +713,39 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.0000001, y: 33.400074, z: 1.0000002}
-  m_Center: {x: 0.000000047683717, y: 13.118935, z: -0.00000009536743}
+  m_Size: {x: 1.0000001, y: 34.26626, z: 1.0000002}
+  m_Center: {x: 0.000000047683717, y: 12.685855, z: -0.00000009536743}
+--- !u!54 &103395534
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103395527}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &110803205
 GameObject:
   m_ObjectHideFlags: 0
@@ -1273,7 +1301,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1495,9 +1523,17 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3674420680592161627, guid: 071ccb30ff858d44b898f3a865b708b7, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3674420680592161627, guid: 071ccb30ff858d44b898f3a865b708b7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 183cc850aa0035049a74c7cf5b6b2235, type: 2}
+    - target: {fileID: 3674420680592161627, guid: 071ccb30ff858d44b898f3a865b708b7, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8b40c4477b1fa9347a87e4822aa82860, type: 2}
     - target: {fileID: 7349069449970646702, guid: 071ccb30ff858d44b898f3a865b708b7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -2069,7 +2105,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -4105,7 +4141,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
