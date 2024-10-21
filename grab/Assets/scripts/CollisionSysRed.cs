@@ -4,60 +4,40 @@ using UnityEngine;
 using TMPro;
 
 public class CollisionSysRed : MonoBehaviour
-
 {
-    public int playerPoints = 0;
-    public TextMeshProUGUI pointsText;
-    public TextMeshProUGUI winText;
-    public TextMeshProUGUI loseText;
+    private ScoreManager scoreManager;
 
     void Start()
     {
-        UpdatePointsText();
-        winText.text = "";
-        loseText.text = "";
+        scoreManager = FindObjectOfType<ScoreManager>();
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("rt"))
+        if (collision.gameObject.CompareTag("gt"))
         {
             Destroy(collision.gameObject);
-            playerPoints++;
-            UpdatePointsText();
-            CheckWinCondition();
+            scoreManager.SubtractPoints(1);
         }
-        else if (collision.gameObject.CompareTag("gt"))
+        else if (collision.gameObject.CompareTag("gc"))
         {
             Destroy(collision.gameObject);
-            playerPoints--;
-            UpdatePointsText();
-            CheckLoseCondition();
+            scoreManager.SubtractPoints(3);
         }
-    }
-
-    void UpdatePointsText()
-    {
-        pointsText.text = "Points: " + playerPoints;
-    }
-
-    void CheckWinCondition()
-    {
-        if (playerPoints > 4)
+        else if (collision.gameObject.CompareTag("rt"))
         {
-            winText.text = "You Win!";
-            loseText.text = "";
-            Time.timeScale = 0f;
+            Destroy(collision.gameObject);
+            scoreManager.AddPoints(1);
         }
-    }
-
-    void CheckLoseCondition()
-    {
-        if (playerPoints <= -4)
+        else if (collision.gameObject.CompareTag("rc"))
         {
-            loseText.text = "You Lose!";
-            winText.text = "";
-            Time.timeScale = 0f;
+            Destroy(collision.gameObject);
+            scoreManager.AddPoints(1);
+        }
+        else if (collision.gameObject.CompareTag("trash"))
+        {
+            Destroy(collision.gameObject);
+            scoreManager.SubtractPoints(3);
         }
     }
 }

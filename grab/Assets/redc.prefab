@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6291230418342045533}
   - component: {fileID: 7928389279204290167}
   - component: {fileID: 2564603842153874619}
+  - component: {fileID: -7704716310667478243}
   m_Layer: 0
   m_Name: redc
   m_TagString: rt
@@ -133,3 +134,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-7704716310667478243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6859326673557073374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0ce2c87c48c9d44f9c223c039552cec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 2564603842153874619}
+  stopThreshold: 1
+  pushForce: 0.5

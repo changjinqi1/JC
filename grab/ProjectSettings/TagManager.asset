@@ -8,6 +8,11 @@ TagManager:
   - green
   - gt
   - rt
+  - trash
+  - gc
+  - rc
+  - detector
+  - poo
   layers:
   - Default
   - TransparentFX
