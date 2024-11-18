@@ -17,8 +17,8 @@ public class NewSpawnObject : MonoBehaviour
 
     private Vector3[] spawnLocations = new Vector3[]
     {
-        new Vector3(25f, 16f, 8f), // location1
-        new Vector3(25f, 17f, -8f) // location2
+        new Vector3(25f, 16f, 8f), // location1 red
+        new Vector3(25f, 17f, -8f) // location2 green
     };
 
     private int objectABCount = 0;
@@ -100,11 +100,11 @@ public class NewSpawnObject : MonoBehaviour
         // Logic for weighted spawning locations
         if (objectToSpawn == objectA || objectToSpawn == objectC)
         {
-            randomLocationIndex = Random.Range(0f, 1f) < 0.5f ? 1 : 0; // 50% chance for location2
+            randomLocationIndex = Random.Range(0f, 1f) < 0.4f ? 1 : 0; // 50% chance for location2 green
         }
         else if (objectToSpawn == objectB || objectToSpawn == objectD)
         {
-            randomLocationIndex = Random.Range(0f, 1f) < 0.5f ? 0 : 1; // 50% chance for location1
+            randomLocationIndex = Random.Range(0f, 1f) < 0.4f ? 0 : 1; // 50% chance for location1 red
         }
         else
         {

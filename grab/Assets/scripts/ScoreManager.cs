@@ -40,7 +40,7 @@ public class ScoreManager : MonoBehaviour
 
     void CheckWinCondition()
     {
-        if (playerPoints >= 15)
+        if (playerPoints >= 10)
         {
             winText.text = "You Win!";
             loseText.text = "";

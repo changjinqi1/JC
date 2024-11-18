@@ -5,29 +5,65 @@ using UnityEngine;
 public class randomspawner : MonoBehaviour
 
 {
-    public GameObject[] objectsToSpawn;
+    public GameObject[] itemPrefabs;
+    public Transform location1;
+    public Transform location2;
 
-    private Vector3[] spawnLocations = new Vector3[]
-    {
-        new Vector3(25f, 16f, 8f),
-        new Vector3(25f, 17f, 3.4f),
-        new Vector3(25f, 17f, -3f),
-        new Vector3(25f, 17f, -8f)
-    };
-
-    public float spawnInterval = 3f;
+    private float gameTime;
 
     void Start()
     {
-        InvokeRepeating("SpawnRandomObject", 0f, spawnInterval);
+        gameTime = 0f;
+        StartCoroutine(SpawnItems());
     }
 
-    void SpawnRandomObject()
+    void Update()
     {
-        int randomObjectIndex = Random.Range(0, objectsToSpawn.Length);
+        gameTime += Time.deltaTime;
+    }
 
-        int randomLocationIndex = Random.Range(0, spawnLocations.Length);
+    IEnumerator SpawnItems()
+    {
+        while (true)
+        {
+            float spawnInterval = GetSpawnInterval();
+            yield return new WaitForSeconds(spawnInterval);
 
-        Instantiate(objectsToSpawn[randomObjectIndex], spawnLocations[randomLocationIndex], Quaternion.identity);
+            SpawnRandomItem();
+        }
+    }
+
+    float GetSpawnInterval()
+    {
+        if (gameTime < 5f)
+        {
+            return Mathf.Infinity;
+        }
+        else if (gameTime < 15f)
+        {
+            return Random.Range(6f, 10f);
+        }
+        else if (gameTime < 25f)
+        {
+            return Random.Range(4f, 8f);
+        }
+        else
+        {
+            return Random.Range(2f, 5f);
+        }
+    }
+
+    void SpawnRandomItem()
+    {
+        if (itemPrefabs.Length == 0)
+        {
+            Debug.LogWarning("No item prefabs assigned.");
+            return;
+        }
+
+        GameObject randomItem = itemPrefabs[Random.Range(0, itemPrefabs.Length)];
+        Transform randomLocation = Random.Range(0, 2) == 0 ? location1 : location2;
+
+        Instantiate(randomItem, randomLocation.position, Quaternion.identity);
     }
 }

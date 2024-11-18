@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1869178340856191303}
   - component: {fileID: 6584755905648302578}
   - component: {fileID: -5220965952115098547}
+  - component: {fileID: 8471291204038926763}
   m_Layer: 0
   m_Name: greenball
   m_TagString: gc
@@ -149,3 +150,16 @@ MonoBehaviour:
   rb: {fileID: 6584755905648302578}
   stopThreshold: 1
   pushForce: 0.5
+--- !u!114 &8471291204038926763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3325197591444880348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69fae78228cb874488cf87aefd8f8823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 7

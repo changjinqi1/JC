@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 169547595152811397}
   - component: {fileID: 8029864679782076259}
   - component: {fileID: 7867774508693751583}
+  - component: {fileID: 4299698851610227926}
   m_Layer: 0
   m_Name: redball
   m_TagString: rc
@@ -149,3 +150,16 @@ MonoBehaviour:
   rb: {fileID: 8029864679782076259}
   stopThreshold: 1
   pushForce: 0.5
+--- !u!114 &4299698851610227926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2299890929109290395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69fae78228cb874488cf87aefd8f8823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 7

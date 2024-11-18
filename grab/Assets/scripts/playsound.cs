@@ -22,7 +22,7 @@ public class playsound : MonoBehaviour
             other.CompareTag("gc") || other.CompareTag("rc") ||
             other.CompareTag("trash") || other.CompareTag("poo"))
         {
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetMouseButtonDown(0))
             {
                 PlayPickupSound();
             }
