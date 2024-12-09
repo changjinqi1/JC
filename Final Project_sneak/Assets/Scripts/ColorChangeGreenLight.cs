@@ -15,6 +15,11 @@ public class ColorChangeGreenLight : MonoBehaviour
     public float waitTime = 2f;
     public float initialWaitTime = 5f;
 
+    [Header("Lighting Settings")]
+    public Light directionalLight; // Assign the directional light in the Inspector
+    public float lightIntensityC = 6f; // Intensity when color is green
+    public float lightIntensityOriginal = 0f; // Intensity when color returns to original
+
     private Renderer objectRenderer;
     private Material objectMaterial;
     private bool isColorC = false;
@@ -45,6 +50,13 @@ public class ColorChangeGreenLight : MonoBehaviour
 
         objectMaterial.EnableKeyword("_EMISSION");
 
+        if (directionalLight == null)
+        {
+            Debug.LogError("No directional light assigned!");
+            enabled = false;
+            return;
+        }
+
         StartCoroutine(StartWithDelay());
     }
 
@@ -58,7 +70,11 @@ public class ColorChangeGreenLight : MonoBehaviour
     {
         while (true)
         {
-            yield return ChangeColor(originalColor, colorC, originalEmissionColor, emissionColorC, toColorDuration);
+            // Transition to green color and increase light intensity
+            yield return ChangeColorAndLight(
+                originalColor, colorC, originalEmissionColor, emissionColorC,
+                toColorDuration, lightIntensityOriginal, lightIntensityC
+            );
             isColorC = true;
             IsInColorC = true;
 
@@ -66,13 +82,19 @@ public class ColorChangeGreenLight : MonoBehaviour
             isColorC = false;
             IsInColorC = false;
 
-            yield return ChangeColor(colorC, originalColor, emissionColorC, originalEmissionColor, toOriginalDuration);
+            // Transition to original color and decrease light intensity
+            yield return ChangeColorAndLight(
+                colorC, originalColor, emissionColorC, originalEmissionColor,
+                toOriginalDuration, lightIntensityC, lightIntensityOriginal
+            );
 
             yield return new WaitForSeconds(waitTime);
         }
     }
 
-    IEnumerator ChangeColor(Color fromColor, Color toColor, Color fromEmission, Color toEmission, float duration)
+    IEnumerator ChangeColorAndLight(
+        Color fromColor, Color toColor, Color fromEmission, Color toEmission,
+        float duration, float fromLightIntensity, float toLightIntensity)
     {
         float elapsedTime = 0f;
 
@@ -81,22 +103,30 @@ public class ColorChangeGreenLight : MonoBehaviour
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / duration;
 
+            // Change material color
             objectMaterial.color = Color.Lerp(fromColor, toColor, t);
 
+            // Change emission color
             if (objectMaterial.HasProperty("_EmissionColor"))
             {
                 Color currentEmission = Color.Lerp(fromEmission, toEmission, t);
                 objectMaterial.SetColor("_EmissionColor", currentEmission);
             }
 
+            // Change light intensity
+            directionalLight.intensity = Mathf.Lerp(fromLightIntensity, toLightIntensity, t);
+
             yield return null;
         }
 
+        // Ensure final values are applied
         objectMaterial.color = toColor;
 
         if (objectMaterial.HasProperty("_EmissionColor"))
         {
             objectMaterial.SetColor("_EmissionColor", toEmission);
         }
+
+        directionalLight.intensity = toLightIntensity;
     }
 }

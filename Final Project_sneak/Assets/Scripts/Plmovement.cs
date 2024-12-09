@@ -7,8 +7,9 @@ public class Plmovement : MonoBehaviour
     public float sprintMultiplier = 3.5f;
     public float sprintDuration = 1f;
     public float sprintCooldown = 1f;
-    public float jumpForce = 7;
+    public float jumpForce = 7f;
     public float groundCheckDistance = 1.5f;
+    public float groundCheckRadius = 0.5f; // Radius for SphereCast
     public string groundTag = "Ground";
 
     private Rigidbody rb;
@@ -30,13 +31,12 @@ public class Plmovement : MonoBehaviour
 
     void HandleMovement()
     {
-        float horizontal = Input.GetAxis("Vertical");
-        float vertical = Input.GetAxis("Horizontal");
+        float horizontal = Input.GetAxis("Horizontal");
 
-        Vector3 moveDirection = transform.right * horizontal + transform.forward * vertical;
+        Vector3 moveDirection = transform.forward * horizontal;
 
         float speed = moveSpeed;
-        if (Input.GetKey(KeyCode.LeftShift) && canSprint)
+        if (Input.GetKey(KeyCode.LeftShift) && canSprint && horizontal != 0)
         {
             speed *= sprintMultiplier;
             sprintTimer += Time.deltaTime;
@@ -52,10 +52,15 @@ public class Plmovement : MonoBehaviour
 
     void HandleJumping()
     {
-        bool isGrounded = IsGrounded();
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (IsGrounded() && Input.GetKeyDown(KeyCode.Space))
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            RaycastHit hit;
+            if (Physics.SphereCast(transform.position, groundCheckRadius, Vector3.down, out hit, groundCheckDistance))
+            {
+                // Jump along the slope's normal direction
+                Vector3 jumpDirection = hit.normal + Vector3.up;
+                rb.AddForce(jumpDirection.normalized * jumpForce, ForceMode.Impulse);
+            }
         }
     }
 
@@ -74,21 +79,7 @@ public class Plmovement : MonoBehaviour
 
     bool IsGrounded()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, groundCheckDistance))
-        {
-            if (hit.collider.CompareTag(groundTag))
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * groundCheckDistance);
+        return Physics.SphereCast(transform.position, groundCheckRadius, Vector3.down, out RaycastHit hit, groundCheckDistance) &&
+               hit.collider.CompareTag(groundTag);
     }
 }
