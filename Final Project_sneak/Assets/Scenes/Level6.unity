@@ -1324,8 +1324,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9834e76d2a2591145bf5beb1b7f90c34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 10
-  maxRotationSpeed: 10
+  rotationSpeed: 15
+  maxRotationSpeed: 15
 --- !u!59 &680523151
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -2243,8 +2243,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9834e76d2a2591145bf5beb1b7f90c34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 10
-  maxRotationSpeed: 10
+  rotationSpeed: 15
+  maxRotationSpeed: 15
 --- !u!59 &1108301007
 HingeJoint:
   m_ObjectHideFlags: 0

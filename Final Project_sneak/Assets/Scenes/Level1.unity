@@ -914,8 +914,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9834e76d2a2591145bf5beb1b7f90c34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 10
-  maxRotationSpeed: 10
+  rotationSpeed: 16
+  maxRotationSpeed: 16
 --- !u!59 &1268660198
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -1314,6 +1314,10 @@ PrefabInstance:
     - target: {fileID: 4205654457224775293, guid: 9302776d28a094e4d9d8433e77088129, type: 3}
       propertyPath: m_CollisionDetection
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4371213643713048071, guid: 9302776d28a094e4d9d8433e77088129, type: 3}
+      propertyPath: moveSpeed
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 5951477628795280678, guid: 9302776d28a094e4d9d8433e77088129, type: 3}
       propertyPath: m_ClearFlags
